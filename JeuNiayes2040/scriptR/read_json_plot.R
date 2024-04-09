@@ -105,13 +105,12 @@ ggsave(filename = "../img/capital_water_players_pluie_boxplot.png", width = 11)
 
 ### Add players ####
 
-real_gameSession <- read.csv("../data/gameSession_config_pluie_26.csv", sep = ";", encoding="latin1", header = F)
-real_gameSession <- real_gameSession[,1:6]
-names(real_gameSession) <- c("Joueurs",	"Lieu",	"ID", "partie",	"Consommation_eau",	'Capital_final')
+real_gameSession <- read.csv("../data/gameSession_config_pluie_26.csv", sep = ";", encoding="latin1")
+
 
 ggplot()+
   geom_point(data = df.meltd, aes( x = capital, y = prelevement), size = 0.5, alpha = 0.4)+
-  geom_point(data = real_gameSession, aes( x = Capital_final, y = Consommation_eau), colour = "#e41a1c", size = 2)+
+  geom_point(data = real_gameSession, aes( x = Capital_final, y = Consommation_eau, colour = as.factor(ID.partie)), size = 2)+
   # geom_hline(yintercept=0.75, linetype="dashed", color = "grey")+
   # geom_vline(xintercept=0.75, linetype="dashed", color = "grey")+
   theme_bw()+
